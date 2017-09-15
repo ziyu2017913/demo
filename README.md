@@ -9,13 +9,14 @@
 DOM事件流:“DOM2级事件”规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。首先发生的是事件捕获，为截获事件提供了机会。然后是实际的目标接收到事件。最后一个阶段是冒泡阶段，可以在这个阶段对事件做出响应。 ![](/images/domevent/DOM event.png)
 
 ps:多数支持 DOM事件流的浏览器都实现了一种特定的行为；即使“DOM2 级事件”规范明确要求捕获阶段不会涉及事件目标，但 IE9、Safari、Chrome、Firefox 和 Opera 9.5 及更高版本都会在捕获阶段触发事件对象上的事件。结果，就是有两个机会在目标对象上面操作事件。IE9、Opera、Firefox、Chrome 和 Safari 都支持 DOM 事件流；IE8 及更早版本不支持 DOM 事件流。
-
+```
 e=window.event||e;
 if(e.stopPropagation){
  e.stopPropagation();
 }else{
  e.cancelBubble=true;
 }
+```
 //e.target------>最开始触发该事件的事件源--谷歌支持,火狐支持
 //window.event.srcElement---->最开始触发该事件的事件源--IE8的写法
 //e.currentTarget--->当前触发该事件的事件对象--谷歌支持,火狐支持
@@ -35,6 +36,7 @@ e.type=====>获取的是当前触发该事件的事件类型(事件名字.没有
 第一段:textContent(标准)与innerText(IE)
 
 //设置任意一个元素的文本内容
+```
 function setInnerText(element,text) {
 	//该属性在浏览器中不支持
 	if(typeof element.textContent=="undefined"){
@@ -53,7 +55,7 @@ function getInnerText(element) {
 	}
 }
 
-
+```
 DOM 节点
 
 //获取节点的属性------IE8中会忽略空白节点---认为是元素
@@ -93,6 +95,7 @@ DOM 节点
 第二段:previousElementSibling和previousSibling;
 
 //获取当前元素前一个元素
+```
 function getPreviousElement(element) {
 	if(element.previousElementSibling){
 		return element.previousElementSibling;
@@ -162,6 +165,7 @@ function getsiblings(ele) {
 	}
 	return elements;
 }
+```
 第三段: getScroll
 
 function getScroll() {
@@ -170,6 +174,7 @@ return {
 left:window.pageXOffset||document.body.scrollLeft||document.documentElement.scrollLeft || 0
 };
 }
+```
 第四段: offset
 
 引入:
